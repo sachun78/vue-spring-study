@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.mobi.backend.repository.UserRepo">
+	<select id="getAllUser" resultType="User">
+		SELECT * FROM t_mytable_1
+	</select>
+
+    <select id="findById" resultType="User">
+		SELECT * FROM t_mytable_1 WHERE id=#{id}
+	</select>
+
+	<select id="findByName" resultType="User">
+		SELECT * FROM t_mytable_1 WHERE name=#{name}
+	</select>
+
+    <select id="addUser" parameterType="com.mobi.backend.data.User">
+		INSERT INTO t_mytable_1(name, tele, addr) VALUES (#{name}, #{tele}, #{addr})
+	</select>
+
+    <select id="editUser" parameterType="com.mobi.backend.data.User">
+		UPDATE t_mytable_1 SET name=#{data.name}, tele=#{data.tele}, addr=#{data.addr} WHERE id=#{id}
+	</select>
+
+	<select id="deleteAll">
+		DELETE FROM t_mytable_1
+	</select>
+
+	<select id="deleteUser">
+		DELETE FROM t_mytable_1 WHERE id=#{id}
+	</select>
+</mapper>
