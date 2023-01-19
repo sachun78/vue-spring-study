@@ -26,7 +26,7 @@ public class UserCtrl {
     @Autowired
     private UserService userDao;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<User>> getAllUser() {
         List<User> userList = userDao.getAllUser();
         if (userList.size() <= 0) {
@@ -44,7 +44,7 @@ public class UserCtrl {
         return ResponseEntity.ok().body(user);
     }
 
-    @GetMapping("/user/name/{userName}")
+    @GetMapping("/name/{userName}")
     public ResponseEntity<User> findByName(@PathVariable(name="userName") String name) {
         User user = userDao.findByName(name);
         if (user == null) {
@@ -53,7 +53,7 @@ public class UserCtrl {
         return ResponseEntity.ok().body(user);
     }
 
-    @PostMapping("/user")
+    @PostMapping("")
     public ResponseEntity<String> addUser(@RequestBody User user) {
         log.info("TEST");
 
@@ -66,19 +66,19 @@ public class UserCtrl {
         }
     }
 
-    @PutMapping("/user/{userId}")
+    @PutMapping("/{userId}")
     public ResponseEntity<String> editUser(@PathVariable(name="userId") int id, @RequestBody User user) {
         userDao.editUser(id, user);
         return ResponseEntity.ok().body("Success update user(" + id + ")");
     }
 
-    @DeleteMapping("/user")
+    @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
         userDao.deleteAll();
         return ResponseEntity.ok().body("Delete all successful !!!!");
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable(name="userId") int id) {
         userDao.deleteUser(id);
         return ResponseEntity.ok().body("Delete user(" + id + ")");
